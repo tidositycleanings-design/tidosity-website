@@ -1,0 +1,22 @@
+# One-click setup on Render (https://render.com).
+# The "Deploy to Render" button reads this file, creates the website, and
+# attaches a small disk so bookings and settings are kept safe between restarts.
+services:
+  - type: web
+    name: tidosity-website
+    runtime: node
+    plan: starter            # disks need a paid plan; this is Render's smallest
+    buildCommand: npm install --omit=dev --no-audit --no-fund
+    startCommand: npm start
+    healthCheckPath: /api/health
+    disk:
+      name: bookings
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: DATA_DIR
+        value: /var/data
+      # Render asks for this during setup. It becomes the owner's dashboard password.
+      # Forgot it later? Change it here (Environment tab) and the site restarts with the new one.
+      - key: ADMIN_PASSWORD
+        sync: false

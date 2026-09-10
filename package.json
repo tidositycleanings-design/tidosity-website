@@ -1,0 +1,17 @@
+{
+  "name": "tidosity-website",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Website with a built-in online booking system and owner dashboard for a cleaning business.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "nodemailer": "^10.0.3"
+  }
+}

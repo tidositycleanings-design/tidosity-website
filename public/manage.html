@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <title>Your booking</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="app-page">
+  <header class="app-header">
+    <div class="container app-header-inner">
+      <a href="/" class="logo">
+        <img class="logo-img" src="images/logo-mark.png" alt="Tidosity" width="61" height="60">
+      </a>
+      <a class="header-phone" data-biz-phone href="#"></a>
+    </div>
+  </header>
+
+  <main class="container app-main">
+    <div class="card manage-card" id="manage" aria-live="polite">
+      <p class="manage-note">Loading your booking...</p>
+    </div>
+  </main>
+
+  <script src="js/ui.js"></script>
+  <script src="js/manage.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Dashboard</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="app-page admin-page">
+  <header class="app-header">
+    <div class="container app-header-inner">
+      <a href="/admin" class="logo">
+        <img class="logo-img" src="images/logo-mark.png" alt="Tidosity" width="61" height="60">
+        <span class="logo-text logo-sub">Dashboard</span>
+      </a>
+      <div class="admin-header-actions" id="admin-actions" hidden>
+        <a class="btn btn-ghost btn-sm" href="/" target="_blank" rel="noopener">View website</a>
+        <button class="btn btn-ghost btn-sm" id="logout" type="button">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container app-main">
+    <!-- First-run setup -->
+    <form class="card setup-card" id="setup" hidden novalidate>
+      <p class="eyebrow">Welcome</p>
+      <h1>Let's set up your booking website</h1>
+      <p class="muted">This takes about a minute. You can change all of it later.</p>
+      <h2 class="setup-step"><span>1</span> Create your owner password</h2>
+      <div class="form-grid">
+        <label class="field"><span>Password <small>(at least 8 characters)</small></span>
+          <input type="password" name="password" autocomplete="new-password" minlength="8" required></label>
+        <label class="field"><span>Type it again</span>
+          <input type="password" name="confirm" autocomplete="new-password" minlength="8" required></label>
+      </div>
+      <h2 class="setup-step"><span>2</span> Your business</h2>
+      <div class="form-grid">
+        <label class="field field-full"><span>Business name</span><input name="name" required maxlength="120"></label>
+        <label class="field"><span>Phone <small>(shown on your website)</small></span><input name="phone" type="tel" maxlength="30"></label>
+        <label class="field"><span>Email <small>(shown on your website)</small></span><input name="email" type="email" maxlength="200"></label>
+        <label class="field field-full"><span>Your timezone</span><select name="timezone" data-timezones></select></label>
+      </div>
+      <p class="form-error" id="setup-error" role="alert" hidden></p>
+      <button class="btn btn-primary btn-block" type="submit">Finish setup</button>
+    </form>
+
+    <!-- Sign in -->
+    <form class="card login-card" id="login" hidden>
+      <h1>Owner sign in</h1>
+      <p class="muted">Sign in to see your bookings and change your website's settings.</p>
+      <label class="field"><span>Password</span>
+        <input type="password" name="password" autocomplete="current-password" required></label>
+      <p class="form-error" id="login-error" role="alert" hidden></p>
+      <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+      <details class="help">
+        <summary>Forgot your password?</summary>
+        <p>On your hosting account (Render), open your website, go to <strong>Environment</strong>, change <strong>ADMIN_PASSWORD</strong> to a new password, and click <strong>Save</strong>. The site restarts in a minute and the new password works.</p>
+      </details>
+    </form>
+
+    <!-- Dashboard -->
+    <div id="dash" hidden>
+      <section class="card checklist" id="checklist" hidden>
+        <div class="checklist-head">
+          <div>
+            <h2>Finish setting up</h2>
+            <p class="muted">A few quick steps and you're ready for bookings.</p>
+          </div>
+          <div class="share">
+            <span>Your website</span>
+            <a id="site-link" href="/" target="_blank" rel="noopener"></a>
+            <button type="button" class="btn btn-ghost btn-sm" id="copy-link">Copy link</button>
+          </div>
+        </div>
+        <ol class="checklist-items" id="checklist-items"></ol>
+      </section>
+
+      <div class="tabs" role="tablist" aria-label="Dashboard sections">
+        <button type="button" role="tab" data-tab="bookings" aria-selected="true">Bookings</button>
+        <button type="button" role="tab" data-tab="schedule" aria-selected="false">Schedule</button>
+        <button type="button" role="tab" data-tab="services" aria-selected="false">Services &amp; prices</button>
+        <button type="button" role="tab" data-tab="business" aria-selected="false">Business info</button>
+        <button type="button" role="tab" data-tab="email" aria-selected="false">Email alerts</button>
+        <button type="button" role="tab" data-tab="password" aria-selected="false">Password</button>
+      </div>
+
+      <!-- Bookings -->
+      <section data-panel="bookings" role="tabpanel">
+        <div class="stats" id="stats"></div>
+        <div class="panel-toolbar">
+          <div class="seg" id="range">
+            <button type="button" data-range="upcoming" aria-pressed="true">Upcoming</button>
+            <button type="button" data-range="past" aria-pressed="false">Past 30 days</button>
+          </div>
+          <label class="check"><input type="checkbox" id="show-cancelled"> Show cancelled</label>
+          <a class="btn btn-ghost btn-sm" href="/api/admin/export.csv">Download all (spreadsheet)</a>
+        </div>
+        <div id="booking-list"><p class="muted">Loading...</p></div>
+      </section>
+
+      <!-- Schedule -->
+      <section data-panel="schedule" role="tabpanel" hidden>
+        <form id="hours-form" class="card">
+          <h2>Working hours</h2>
+          <p class="muted">Clients can only book inside these hours, and every job has to finish by closing time. These hours also show on your website.</p>
+          <div class="hours-grid" id="hours-grid"></div>
+
+          <h2>Booking rules</h2>
+          <div class="rules-grid">
+            <label class="field"><span>Travel time between jobs <small>(minutes)</small></span>
+              <input type="number" name="bufferMinutes" min="0" max="240" step="5" required></label>
+            <label class="field"><span>How much notice you need <small>(hours)</small></span>
+              <input type="number" name="minNoticeHours" min="0" max="720" required></label>
+            <label class="field"><span>How far ahead clients can book <small>(days)</small></span>
+              <input type="number" name="maxDaysAhead" min="1" max="365" required></label>
+            <label class="field"><span>Clients can cancel online until <small>(hours before)</small></span>
+              <input type="number" name="cancelCutoffHours" min="0" max="720" required></label>
+            <label class="field"><span>Offer start times every</span>
+              <select name="slotInterval">
+                <option value="15">15 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="60">60 minutes</option>
+              </select></label>
+            <label class="field"><span>Jobs at the same time <small>(cleaners or teams)</small></span>
+              <input type="number" name="capacity" min="1" max="20" required></label>
+          </div>
+          <p class="form-error" id="hours-error" role="alert" hidden></p>
+          <button class="btn btn-primary" type="submit">Save schedule</button>
+        </form>
+
+        <div class="timeoff-grid">
+          <form id="block-form" class="card">
+            <h2>Take time off</h2>
+            <p class="muted">Vacations, holidays, appointments. Clients won't be able to book these times. Existing bookings aren't changed; cancel those from the Bookings tab if needed.</p>
+            <div class="form-grid">
+              <label class="field"><span>From</span><input type="date" name="date" required></label>
+              <label class="field"><span>To <small>(optional)</small></span><input type="date" name="endDate"></label>
+              <label class="check field-full block-allday"><input type="checkbox" name="allDay" checked> All day</label>
+              <label class="field" data-times hidden><span>Start time</span><input type="time" name="start" value="09:00"></label>
+              <label class="field" data-times hidden><span>End time</span><input type="time" name="end" value="12:00"></label>
+              <label class="field field-full"><span>Note <small>(only you see this)</small></span>
+                <input name="reason" maxlength="200" placeholder="e.g. Family vacation"></label>
+            </div>
+            <p class="form-error" id="block-error" role="alert" hidden></p>
+            <button class="btn btn-primary" type="submit">Block this time</button>
+          </form>
+          <div class="card">
+            <h2>Upcoming time off</h2>
+            <ul class="block-list" id="block-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services & prices -->
+      <section data-panel="services" role="tabpanel" hidden>
+        <form id="services-form" novalidate>
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2>Your services</h2>
+                <p class="muted">These show on your website and in the booking form. Prices are for a 1-bedroom, 1-bathroom home; bigger homes add the extra amounts.</p>
+              </div>
+              <button type="button" class="btn btn-ghost btn-sm" id="add-service">+ Add a service</button>
+            </div>
+            <div class="service-list" id="service-list"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2>Add-ons</h2>
+                <p class="muted">Optional extras clients can tick when booking, like "Inside the oven". Leave this empty if you don't offer any.</p>
+              </div>
+              <button type="button" class="btn btn-ghost btn-sm" id="add-addon">+ Add an add-on</button>
+            </div>
+            <div class="row-list" id="addon-list"></div>
+          </div>
+
+          <div class="card">
+            <h2>Pricing details</h2>
+            <label class="field"><span>Pricing note <small>(shown under every price estimate)</small></span>
+              <textarea name="pricingNote" rows="2" maxlength="300"></textarea></label>
+            <div class="rules-grid" id="discounts"></div>
+            <div class="rules-grid">
+              <label class="field"><span>Largest home in the booking form <small>(bedrooms)</small></span>
+                <input type="number" name="maxBedrooms" min="1" max="20" required></label>
+              <label class="field"><span>Largest home in the booking form <small>(bathrooms)</small></span>
+                <input type="number" name="maxBathrooms" min="1" max="20" required></label>
+            </div>
+          </div>
+
+          <div class="save-bar">
+            <p class="form-error" id="services-error" role="alert" hidden></p>
+            <button class="btn btn-primary" type="submit">Save services &amp; prices</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Business info & reviews -->
+      <section data-panel="business" role="tabpanel" hidden>
+        <form id="business-form" class="card" novalidate>
+          <h2>Business info</h2>
+          <p class="muted">Shown on your website and in emails to your clients.</p>
+          <div class="form-grid">
+            <label class="field field-full"><span>Business name</span><input name="name" required maxlength="120"></label>
+            <label class="field"><span>Phone</span><input name="phone" type="tel" maxlength="30" placeholder="(555) 123-4567"></label>
+            <label class="field"><span>Email</span><input name="email" type="email" maxlength="200" placeholder="you@example.com"></label>
+            <label class="field field-full"><span>Towns and areas you serve <small>(separate with commas)</small></span>
+              <input name="area" maxlength="2000" placeholder="e.g. Austin, Round Rock, Cedar Park"></label>
+            <label class="field"><span>Your timezone</span><select name="timezone" data-timezones></select></label>
+            <label class="field"><span>Send new-booking alerts to <small>(blank = the email above)</small></span>
+              <input name="notifyEmail" type="email" maxlength="200"></label>
+            <label class="field field-full"><span>Your website's address <small>(used for links in emails)</small></span>
+              <input name="siteUrl" maxlength="200" placeholder="https://yourwebsite.com"></label>
+          </div>
+          <p class="form-error" id="business-error" role="alert" hidden></p>
+          <button class="btn btn-primary" type="submit">Save business info</button>
+        </form>
+
+        <form id="reviews-form" class="card" novalidate>
+          <div class="card-head">
+            <div>
+              <h2>Reviews</h2>
+              <p class="muted">Shown on your website. Copy them from Google, Facebook, or messages from happy clients (with their permission).</p>
+            </div>
+            <button type="button" class="btn btn-ghost btn-sm" id="add-review">+ Add a review</button>
+          </div>
+          <div class="row-list" id="review-list"></div>
+          <p class="form-error" id="reviews-error" role="alert" hidden></p>
+          <button class="btn btn-primary" type="submit">Save reviews</button>
+        </form>
+
+        <form id="faq-form" class="card" novalidate>
+          <div class="card-head">
+            <div>
+              <h2>Questions &amp; answers (FAQ)</h2>
+              <p class="muted">Common questions shown on your website. Answering them here saves you phone calls.</p>
+            </div>
+            <button type="button" class="btn btn-ghost btn-sm" id="add-faq">+ Add a question</button>
+          </div>
+          <div class="row-list" id="faq-list"></div>
+          <p class="form-error" id="faq-error" role="alert" hidden></p>
+          <button class="btn btn-primary" type="submit">Save questions</button>
+        </form>
+      </section>
+
+      <!-- Email alerts -->
+      <section data-panel="email" role="tabpanel" hidden>
+        <form id="email-form" class="card" novalidate>
+          <h2>Email alerts</h2>
+          <p class="muted">Get an email for every new booking, and automatically send clients their confirmation, reschedule, and cancellation emails. Emails come from your own email account.</p>
+          <p class="status-line" id="email-status"></p>
+          <div class="form-grid">
+            <label class="field"><span>Your email service</span><select name="provider"></select></label>
+            <label class="field"><span>Your email address</span><input name="user" type="email" autocomplete="off" maxlength="200"></label>
+            <label class="field field-full"><span>App password</span>
+              <input name="pass" type="password" autocomplete="new-password" maxlength="200"></label>
+            <label class="field" data-other hidden><span>Email server (SMTP)</span><input name="host" maxlength="200" placeholder="smtp.yourprovider.com"></label>
+            <label class="field" data-other hidden><span>Port</span><input name="port" type="number" min="1" max="65535" value="587"></label>
+          </div>
+          <div class="help-box" id="email-help"></div>
+          <p class="form-error" id="email-error" role="alert" hidden></p>
+          <div class="button-row">
+            <button class="btn btn-primary" type="submit">Save &amp; send a test email</button>
+            <button class="btn btn-ghost" type="button" id="email-off" hidden>Turn off email</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Password -->
+      <section data-panel="password" role="tabpanel" hidden>
+        <form id="password-form" class="card narrow-card" novalidate>
+          <h2>Change your password</h2>
+          <label class="field"><span>Current password</span><input type="password" name="current" autocomplete="current-password" required></label>
+          <label class="field"><span>New password <small>(at least 8 characters)</small></span>
+            <input type="password" name="next" autocomplete="new-password" minlength="8" required></label>
+          <label class="field"><span>Type the new password again</span><input type="password" name="confirm" autocomplete="new-password" required></label>
+          <p class="form-error" id="password-error" role="alert" hidden></p>
+          <button class="btn btn-primary" type="submit">Change password</button>
+          <p class="muted small">Changing your password signs you out on your other devices.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/ui.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-schedule.js"></script>
+  <script src="js/admin-settings.js"></script>
+</body>
+</html>

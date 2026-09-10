@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{name}} | Residential, Move-In/Out &amp; Rental Turnovers</title>
+  <meta name="description" content="Woman-owned premium cleaning: private residential, move-in/out, organization and deep cleanings, and short-term rental turnovers. See your price and book online.">
+  <meta property="og:title" content="{{name}}">
+  <meta property="og:description" content="Spotless spaces. Peace of mind. Book your premium cleaning online.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta name="theme-color" content="#1470af">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json"><!--@jsonLd--></script>
+</head>
+<body class="{{bodyClass}}">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="#top" class="logo" aria-label="{{name}}, back to top">
+      <img class="logo-img" src="images/logo-mark.png" alt="Tidosity" width="61" height="60">
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#book">Book</a></li>
+        <li><a href="#hosts">Hosts</a></li>
+        <li><a href="#about">About</a></li>
+        <li data-needs="faq"><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href="{{phoneHref}}" data-needs="phone">{{phone}}</a>
+      <a class="btn btn-primary btn-sm" href="#book">Book now</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Woman-owned &middot; Premium cleaning services</p>
+        <h1>Spotless spaces. <em>Peace of mind.</em></h1>
+        <p class="lead">At Tidosity, we believe a clean space creates room for comfort and peace of mind. Whether you're a busy professional, a growing family, or a short-term rental host preparing for your next guest, we provide dependable, detail-oriented cleaning tailored to your needs.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#book">Book now</a>
+          <a class="btn btn-ghost" href="#services">Our services</a>
+        </div>
+        <ul class="trust-list">
+          <li>Woman-owned since 2024</li>
+          <li>Recurring or one-time</li>
+          <li>Short-term rental specialists</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual">
+        <img class="hero-photo" src="images/hero.jpg" alt="Illustration of the Tidosity team cleaning a bright, tidy home" width="1400" height="933">
+        <div class="float-card float-rating" aria-hidden="true">
+          <span class="float-icon">&hearts;</span>
+          <span><strong>Woman-owned</strong><br>since 2024</span>
+        </div>
+        <div class="float-card float-next" aria-hidden="true">
+          <span class="pulse"></span>
+          <span>Book online <strong>in minutes</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <!-- Service cards are filled in from the dashboard (Services & prices) -->
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Our services</p>
+        <h2>Premium cleaning for every space</h2>
+        <p>Homes, move-ins and move-outs, closets that need a reset, rentals between guests, and the places you work.</p>
+      </div>
+
+      <div class="services-grid"><!--@services-->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Booked in three easy steps</h2>
+      </div>
+      <ol class="steps">
+        <li class="step" data-reveal>
+          <span class="step-num">1</span>
+          <h3>Choose your clean</h3>
+          <p>Pick a service and your home size. Your estimate updates instantly.</p>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step-num">2</span>
+          <h3>Pick a time that works</h3>
+          <p>See real-time availability and book in seconds. No account needed.</p>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step-num">3</span>
+          <h3>Come home to clean</h3>
+          <p>Relax while we take care of the details, from top to bottom.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ BOOK ONLINE ============ -->
+  <section class="section book-section" id="book">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Book online</p>
+        <h2>Book your personalized premium cleaning</h2>
+        <p>Instant estimates and real-time availability. Rental hosts and offices can book a free consultation.</p>
+      </div>
+
+      <div class="booker" id="booker">
+        <ol class="booker-progress" aria-label="Booking steps">
+          <li class="is-active" data-progress="1"><span>1</span> Your clean</li>
+          <li data-progress="2"><span>2</span> Date &amp; time</li>
+          <li data-progress="3"><span>3</span> Your details</li>
+        </ol>
+
+        <div class="booker-body">
+          <div class="booker-main">
+            <p class="booker-offline" id="bk-offline" hidden>
+              Online booking isn't available right now. Please <a href="#contact">contact us</a> and we'll get you scheduled.
+            </p>
+
+            <!-- Step 1: service -->
+            <div class="bk-step" data-step="1">
+              <h3 class="bk-title">What can we help with?</h3>
+              <div class="bk-services" id="bk-services" role="radiogroup" aria-label="Service"></div>
+              <div class="bk-row" id="bk-size">
+                <label class="field"><span>Bedrooms</span><select id="bk-beds"></select></label>
+                <label class="field"><span>Bathrooms</span><select id="bk-baths"></select></label>
+              </div>
+              <div class="field" id="bk-freq-wrap">
+                <span class="field-label">How often?</span>
+                <div class="bk-chips" id="bk-freq" role="radiogroup" aria-label="How often"></div>
+              </div>
+              <div class="field" id="bk-addons-wrap">
+                <span class="field-label">Add-ons <small>(optional)</small></span>
+                <div class="bk-chips" id="bk-addons"></div>
+              </div>
+              <p class="bk-consult-note" id="bk-consult-note" hidden>We'll meet to learn about your property and needs, then send you a custom plan and quote. The consultation is free.</p>
+              <div class="bk-actions">
+                <button type="button" class="btn btn-primary" data-go="2">Choose a time</button>
+              </div>
+            </div>
+
+            <!-- Step 2: date & time -->
+            <div class="bk-step" data-step="2" hidden>
+              <h3 class="bk-title">Pick a day and time</h3>
+              <div class="bk-schedule" id="bk-schedule"></div>
+              <div class="bk-actions">
+                <button type="button" class="btn btn-ghost" data-go="1">Back</button>
+                <button type="button" class="btn btn-primary" data-go="3" id="bk-to-details" disabled>Continue</button>
+              </div>
+            </div>
+
+            <!-- Step 3: details -->
+            <form class="bk-step" data-step="3" id="bk-form" hidden novalidate>
+              <h3 class="bk-title">Where should we come?</h3>
+              <div class="form-grid">
+                <label class="field"><span>Full name</span><input name="name" autocomplete="name" required maxlength="100"></label>
+                <label class="field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" required maxlength="30"></label>
+                <label class="field field-full"><span>Email</span><input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+                <label class="field field-full"><span>Address</span><input name="address" autocomplete="street-address" required maxlength="300"></label>
+                <label class="field field-full"><span>Anything we should know? <small>(optional)</small></span>
+                  <textarea name="notes" rows="3" maxlength="2000" placeholder="Pets, parking, door codes, rooms to focus on..."></textarea></label>
+                <label class="hp" aria-hidden="true">Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label>
+              </div>
+              <p class="form-error" id="bk-error" role="alert" hidden></p>
+              <div class="bk-actions">
+                <button type="button" class="btn btn-ghost" data-go="2">Back</button>
+                <button type="submit" class="btn btn-primary" id="bk-submit">Confirm booking</button>
+              </div>
+              <p class="bk-fineprint">You can reschedule or cancel online up to <span data-cutoff>24</span> hours before your appointment.</p>
+            </form>
+
+            <!-- Done -->
+            <div class="bk-step bk-done" data-step="done" hidden tabindex="-1">
+              <div class="bk-done-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+              </div>
+              <h3>You're booked!</h3>
+              <p id="bk-done-text"></p>
+              <div class="bk-actions bk-actions-center">
+                <a class="btn btn-primary" id="bk-ics" href="#">Add to my calendar</a>
+                <a class="btn btn-ghost" id="bk-manage" href="#">View or change booking</a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="booker-summary" aria-live="polite">
+            <h3>Your booking</h3>
+            <dl class="bk-summary" id="bk-summary"></dl>
+            <div class="bk-total"><span id="bk-price-label">Estimated total</span><strong id="bk-price">&ndash;</strong></div>
+            <p class="bk-duration" id="bk-duration"></p>
+            <p class="bk-note" id="bk-note"></p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOSTS ============ -->
+  <section class="section section-alt hosts-section" id="hosts">
+    <div class="container">
+      <div class="hosts-intro">
+        <div class="hosts-copy">
+          <p class="eyebrow">Host partnerships</p>
+          <h2>Premium cleaning with property management benefits</h2>
+          <p class="lead">We keep your short-term rental fully stocked with high-quality essentials, so your guests have everything they need for a comfortable stay and you don't have to worry about a thing.</p>
+          <div class="host-services">
+            <div>
+              <h3>Turnover cleaning</h3>
+              <ul><li>Full home cleaning between guests</li><li>Final inspection for guest readiness</li></ul>
+            </div>
+            <div>
+              <h3>Restock &amp; staging</h3>
+              <ul><li>Restocked essentials and supplies</li><li>Custom welcome setup available</li></ul>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="#book" data-book-service="rental">Book a free host consultation</a>
+        </div>
+        <img class="hosts-photo" src="images/host.jpg" alt="A freshly made guest bedroom, staged for the next arrival" width="1400" height="788" loading="lazy">
+      </div>
+
+      <ul class="benefits">
+        <li data-reveal>
+          <span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 2.5"/></svg></span>
+          <h3>Reliability</h3><p>Count on consistent, high-quality turnovers, every time.</p>
+        </li>
+        <li data-reveal>
+          <span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+          <h3>Thorough</h3><p>We clean with intention and detail, leaving your property guest-ready.</p>
+        </li>
+        <li data-reveal>
+          <span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></span>
+          <h3>Fully stocked</h3><p>We manage inventory and restock essentials so you never have to worry.</p>
+        </li>
+        <li data-reveal>
+          <span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+          <h3>Transparency</h3><p>Photo documentation and clear communication keep you informed at every step.</p>
+        </li>
+        <li data-reveal>
+          <span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9H4z"/><path d="M12 17s-3-1.8-3-3.6c0-.9.7-1.6 1.5-1.6.6 0 1.1.3 1.5.8.4-.5.9-.8 1.5-.8.8 0 1.5.7 1.5 1.6 0 1.8-3 3.6-3 3.6z"/></svg></span>
+          <h3>Trust</h3><p>Your property is in good hands. We treat every home like our own.</p>
+        </li>
+        <li data-reveal>
+          <span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/></svg></span>
+          <h3>Inventory management</h3><p>We track host-provided supplies and send a report of what's needed.</p>
+        </li>
+        <li data-reveal>
+          <span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span>
+          <h3>Summary reports</h3><p>We document incidents, maintenance needs, and completion after every visit.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="about-photo" data-reveal>
+        <img src="images/about-owners.jpg" alt="The Tidosity team" width="1000" height="1000" loading="lazy">
+      </div>
+      <div class="about-copy" data-reveal>
+        <p class="eyebrow">About Tidosity</p>
+        <h2>A woman-owned business built on peace of mind</h2>
+        <p>Founded in 2024 by Sabrina Ureta, Tidosity Premium Cleaning Services began with residential cleaning and grew quickly through referrals from friends, family, and clients who trusted Sabrina's attention to detail, reliability, and commitment to quality.</p>
+        <p>In 2026, Tidosity expanded to specialize in short-term rental turnovers. Sabrina's background as a Project Coordinator for a property management company, and later as an on-site Airbnb turnover specialist, shaped systems built for efficiency, consistency, and exceptional guest readiness.</p>
+        <p>Today we proudly serve homeowners who want a spotless, stress-free home and hosts who depend on reliable turnovers to deliver five-star guest experiences.</p>
+        <ul class="values">
+          <li><strong>Detail-oriented.</strong> Meticulous cleaning, from top to bottom.</li>
+          <li><strong>Dependable.</strong> Consistent service you can plan around.</li>
+          <li><strong>Hospitality driven.</strong> Damage documentation, inventory, and restocking for hosts.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MISSION ============ -->
+  <section class="mission">
+    <img class="mission-bg" src="images/mission.jpg" alt="" width="1400" height="934" loading="lazy">
+    <div class="container mission-inner">
+      <p class="eyebrow">Our mission</p>
+      <p class="mission-text">To create clean, comfortable, and welcoming spaces while giving our clients more time and peace of mind.</p>
+      <p class="mission-sub">Through reliable service and attention to detail, we take pride in making every space feel its best.</p>
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+  <section class="section section-alt" id="reviews" data-needs="reviews">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Reviews</p>
+        <h2>What our clients say</h2>
+      </div>
+      <div class="reviews-grid"><!--@reviews--></div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq" data-needs="faq">
+    <div class="container faq-wrap">
+      <div class="section-head">
+        <p class="eyebrow">FAQ</p>
+        <h2>Good questions</h2>
+      </div>
+      <div class="faq-list"><!--@faq--></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact-section" id="contact">
+    <div class="container contact-grid">
+      <div>
+        <h2>Ready for a next-level clean?</h2>
+        <p class="lead">Tell us what you need and let's build a custom plan. Call, text, or email us anytime.</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="#book">Book now</a>
+          <a class="btn btn-ghost" href="{{phoneHref}}" data-needs="phone">Call {{phone}}</a>
+          <a class="btn btn-ghost" href="{{emailHref}}" data-needs="email">Email us</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Hours</h3>
+        <dl class="hours"><!--@hours--></dl>
+        <div data-needs="area">
+          <h3>Where we clean</h3>
+          <ul class="area-chips"><!--@area--></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <img class="footer-logo" src="images/logo-white.png" alt="{{name}}" width="140" height="133" loading="lazy">
+      <p>Clean homes. Peace of mind. More time for what matters.</p>
+    </div>
+    <nav aria-label="Footer">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#book">Book online</a></li>
+        <li><a href="#hosts">Host partnerships</a></li>
+        <li><a href="#about">About</a></li>
+        <li data-needs="faq"><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li data-needs="phone"><a href="{{phoneHref}}">{{phone}}</a></li>
+        <li data-needs="email"><a href="{{emailHref}}">{{email}}</a></li>
+        <li><a href="#book">Book online</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; <span id="year">{{year}}</span> {{name}}. All rights reserved.</p>
+    <a href="/admin">Owner login</a>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn btn-ghost" href="{{phoneHref}}" data-needs="phone">Call</a>
+  <a class="btn btn-primary" href="#book">Book now</a>
+</div>
+
+<script src="js/pricing.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+<script src="js/booking.js"></script>
+</body>
+</html>
